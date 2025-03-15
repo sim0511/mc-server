@@ -1,7 +1,7 @@
 module.exports ={ 
   apps:[
     {
-      name: 'oauth',
+      name: 'master-cleaning',
       script: 'dist/src/index.js',
       instances: 1,
       autorestart: true, // Enable automatic restart
