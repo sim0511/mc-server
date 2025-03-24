@@ -1,25 +1,31 @@
 /*=============================================
 =            import external modules          =
 =============================================*/
-import express, { Application, Request, Response,NextFunction } from 'express';
-import logger from './utils/logger.js';
-import helmet from 'helmet';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import {Server as HttpServer} from 'http';
-import { config } from './config/config.js';
 
+import express, { Application, NextFunction, Request, Response } from 'express';
+
+import AssignmentRoutes from './routes/assignment.route.js';
 import { AuthController } from './controllers/AuthController.js';
-
+import AuthRoutes from './routes/auth.route.js';
+import {Server as HttpServer} from 'http';
+import UserRoutes from './routes/user.route.js';
+import { config } from './config/config.js';
+import connectToMongoDB from './utils/connectDB.js';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import {corsOptions} from './config/cors.js';
+import errorHandler from './middlewares/errorHandler.js';
+import helmet from 'helmet';
+import logger from './utils/logger.js';
 
 /*=============================================
 =            Import Custom Modules            =
 =============================================*/
-import {corsOptions} from './config/cors.js';
-import connectToMongoDB from './utils/connectDB.js';
-import errorHandler from './middlewares/errorHandler.js';
-import AuthRoutes from './routes/auth.route.js';
-import UserRoutes from './routes/user.route.js';
+
+
+
+
+
 /*=====  End of Import Custom Modules  ======*/
 
 
@@ -62,9 +68,9 @@ setUpMiddlewares():void {
     });
 
     // Define other v1 specific routes here
-    router.use(AuthRoutes);
-    router.use(UserRoutes);
-    
+    // router.use(AuthRoutes);
+    // router.use(UserRoutes);
+    router.use(AssignmentRoutes)
     return router;
 }
 // start server 

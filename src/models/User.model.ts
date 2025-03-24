@@ -1,6 +1,12 @@
-import mongoose, { Schema, Model, model } from "mongoose";
+import mongoose, { Model, Schema, model } from "mongoose";
+
 import { IUser } from "../shared/interfaces/IUser.js";
-import { AvailabilitySchema } from "../schemas/Availability.schema.js";
+
+const AvailabilitySchema = new Schema({
+  day: { type: String, required: true },
+  availableFrom: { type: String, required: true },
+  availableTo: { type: String, required: true },
+}, { _id: false });
 
 const UserSchema = new Schema<IUser>({
   userId: {
@@ -9,29 +15,29 @@ const UserSchema = new Schema<IUser>({
     unique: true,
     default: function () {
       return this._id.toString();
-    },
-    description: "Unique identifier for the user"
-  },  
+    }
+  },
   username: { type: String, required: true },
-  passwordHash: { type: String },
   email: { type: String, required: true, unique: true },
-  createdAt: { type: Date, required: true, default: Date.now },
-  updatedAt: { type: Date, required: true, default: Date.now },
+  passwordHash: { type: String },
   googleId: { type: String },
   profilePicture: { type: String },
   lastLoginAt: { type: Date },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
   role: {
     type: String,
     required: true,
     enum: ["employee", "manager", "admin"],
-    default: "employee",
+    default: "employee"
   },
   weeklyAvailability: {
     type: [AvailabilitySchema],
     required: function () {
       return this.role === "employee";
     },
-  },
+    default: undefined
+  }
 });
 
 const UserModel: Model<IUser> = model<IUser>("User", UserSchema);

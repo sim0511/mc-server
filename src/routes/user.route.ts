@@ -1,12 +1,12 @@
-import express from 'express';
 import { UserService } from '../services/UserService.js';
+import express from 'express';
 import { verifyTokenMiddleware } from '../middlewares/authMiddleware.js';
 
 const userRouter = express.Router();
 const userService = new UserService();
 
 // Protected route to get the current user's profile
-userRouter.get('/me', verifyTokenMiddleware, 
+userRouter.get('/me', 
   async (req, res, next) => {
   try {
     const user = await userService.getUserById((req as any).user.userId); // req.user is set by the middleware
@@ -20,7 +20,7 @@ userRouter.get('/me', verifyTokenMiddleware,
 });
 
 // Public route to get user by username
-userRouter.get('/:username', verifyTokenMiddleware,async (req, res, next) => {
+userRouter.get('/:username', async (req, res, next) => {
   try {
     const user = await userService.getUserByUsername(req.params.username);
     if (!user) {

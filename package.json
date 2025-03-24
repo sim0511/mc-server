@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed:users": "node --loader @swc-node/register/esm src/services/seedUsers.ts",
+    "seed:tasks": "node --loader @swc-node/register/esm src/services/seedCleaningTasks.ts"
   },
   "author": "",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@swc-node/register": "^1.10.10",
     "@swc/cli": "^0.4.0",
     "@swc/core": "^1.7.25",
     "@types/bcrypt": "^5.0.2",
@@ -21,6 +24,7 @@
     "nodemon": "^3.1.4"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.6.0",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",

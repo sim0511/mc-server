@@ -12,6 +12,7 @@ export const TASK_NAMES = [
   "Clean Shelving (Front Line)",
   "Clean Shelving (Grill Area)",
   "Clean Shelving (Chemical Storage)",
+  "Clean Shelving (Pan Storage)",
   "Clean Soda Fountain",
   "Drain, Disassemble & Clean Tractor Beverage",
   "Clean Office",
@@ -26,8 +27,11 @@ export const TASK_NAMES = [
   "Filter & Clean Fryer Oil",
   "Change Fryer Oil (Bi-Monthly)",
   "Wipe Down Menu Panels",
-  "Clean Dining Room Chairs & Tables"
+  "Clean Dining Room Chairs & Tables",
+  "Clean Reachable Overhead Pipes, Wood, Vents & Ceilings",
+  "Clean Walls (Walk-in)"
 ] as const;
+
 
 export const AREAS = [
   "FOH", "BOH", "Kitchen", "Restroom", "Dining Room", "Walk-in", "Storage", "Dumpster", "Office"
