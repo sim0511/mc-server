@@ -30,3 +30,21 @@ export const assignTaskToUser = async (req: Request, res: Response, next: NextFu
     next(error);
   }
 };
+
+export const getMyAssignments = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const userId = (req as any).user?.userId || req.query.userId;
+
+    const tasks = await TaskAssignmentModel.find({ userId })
+      .populate("taskId") // shows task info
+      .sort({ dueDate: 1 });
+
+    res.status(200).json({
+      message: "Your assigned tasks",
+      data: tasks,
+    });
+    console.log(tasks);
+  } catch (error) {
+    next(error);
+  }
+};

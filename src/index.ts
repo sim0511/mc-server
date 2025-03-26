@@ -68,8 +68,8 @@ setUpMiddlewares():void {
     });
 
     // Define other v1 specific routes here
-    // router.use(AuthRoutes);
-    // router.use(UserRoutes);
+    router.use(AuthRoutes);
+    router.use(UserRoutes);
     router.use(AssignmentRoutes)
     return router;
 }
