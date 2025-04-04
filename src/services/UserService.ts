@@ -1,6 +1,7 @@
 // import User, { IUser } from '../models/User.js';
-import User from '../models/User.model.js';
+
 import { IUser } from '../shared/interfaces/IUser.js';
+import User from '../models/User.model.js';
 
 export class UserService {
   // Get user by ID
@@ -16,5 +17,10 @@ export class UserService {
   // Get all users (optional)
   public async getAllUsers(): Promise<IUser[]> {
     return await User.find().select('-passwordHash'); // Exclude passwordHash from results
+  }
+
+  public async getUsersByRole(role: string): Promise<IUser[]> {
+    console.log(role);
+     return await User.find({ role }).select('-passwordHash'); // Exclude passwordHash from results
   }
 }

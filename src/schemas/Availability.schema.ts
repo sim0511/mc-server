@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
-import { IAvailability } from '../shared/interfaces/IAvailability.js';
+
 import { DayAvailabilitySchema } from './DayAvailability.schema.js';
+import { IAvailability } from '../shared/interfaces/IAvailability.js';
 
 export const AvailabilitySchema = new Schema<IAvailability>({
   weekStartDate: { type: Date, required: true },

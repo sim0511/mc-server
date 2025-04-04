@@ -1,6 +1,6 @@
 // import { IDayAvailability } from './IDayAvailability.js';
 
-// export interface IAvailability {
+// export interface IWAvailability {
 //   weekStartDate: Date;
 //   days: {
 //     monday: IDayAvailability;

@@ -8,6 +8,7 @@ import AssignmentRoutes from './routes/assignment.route.js';
 import { AuthController } from './controllers/AuthController.js';
 import AuthRoutes from './routes/auth.route.js';
 import {Server as HttpServer} from 'http';
+import TaskRoutes from './routes/tasks.route.js';
 import UserRoutes from './routes/user.route.js';
 import { config } from './config/config.js';
 import connectToMongoDB from './utils/connectDB.js';
@@ -48,7 +49,7 @@ setUpMiddlewares():void {
     this.app.use(express.urlencoded({limit: '50mb', extended:true}));
     this.app.use(helmet());
     this.app.use(cors(corsOptions));
-    this.app.use(cookieParser())
+    this.app.use(cookieParser());
 }
 
 // setting routes
@@ -70,7 +71,8 @@ setUpMiddlewares():void {
     // Define other v1 specific routes here
     router.use(AuthRoutes);
     router.use(UserRoutes);
-    router.use(AssignmentRoutes)
+    router.use(AssignmentRoutes);
+    router.use(TaskRoutes);
     return router;
 }
 // start server 
